@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,34 +18,34 @@
     <div class="pos-f-t">
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="bg-dark p-4">
-            <h5 class="text-white h4">Grille :</h5>
+            <h5 class="text-white h4">Grid :</h5>
             <div>
                 <div class="form-row">
                   <div class="form-group col">
-                    <input type="number" class="form-control" id="inputLigne" placeholder="Nombre de lignes">
+                    <input type="number" class="form-control" id="inputLigne" placeholder="Rows">
                   </div>
                   <div class="form-group col">
-                    <input type="number" class="form-control" id="inputColonne" placeholder="Nombre de colonnes">
+                    <input type="number" class="form-control" id="inputColonne" placeholder="Columns">
                   </div>
                   <div class="form-group col">
-                      <input onclick="gen()" class="btn btn-primary" type="button" value="Générer">
+                      <input onclick="gen()" class="btn btn-primary" type="button" value="Generate">
                   </div>
                 </div>
             </div>
             <br>
-            <h5 class="text-white h4">Tuile personnelle :</h5>
+            <h5 class="text-white h4">Custom tile :</h5>
             <div class="form-row">
               <div class="form-group col">
                 <div class="custom-file">
                   <input type="file" name="file" class="custom-file-input" id="file" accept="image/*" multiple onchange="previewImage();">
-                  <label class="custom-file-label" for="file">Sélectionnez une ou plusieurs images</label>
+                  <label class="custom-file-label" for="file">Choose file</label>
                 </div>
               </div>
               <div class="form-group col">
-                <input type="text" class="form-control" id="inputLink" placeholder="Lien url de l'image">
+                <input type="text" class="form-control" id="inputLink" placeholder="url">
               </div>
               <div class="form-group col">
-                  <input onclick="imagelink()" class="btn btn-primary" type="button" value="Ajouter">
+                  <input onclick="imagelink()" class="btn btn-primary" type="button" value="Add">
               </div>
             </div>
           </div>
@@ -54,52 +54,52 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a href="index_en.html"><img style="max-height: 32px;" src="https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png"></a>
+          <a href="index.html"><img style="max-height: 32px;" src="https://cdn.countryflags.com/thumbs/france/flag-400.png"></a>
         </nav>
       </div>
-    <br><div style="text-align: center;">Assets par <a href="https://www.deviantart.com/madcowchef/gallery/48647465/free-map-tiles">Madcowchef</a></div><br>
+    <br><div style="text-align: center;">Example assets by <a href="https://www.deviantart.com/madcowchef/gallery/48647465/free-map-tiles">Madcowchef</a></div><br>
     <div style="text-align: center;">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button onclick="aff4()" type="button" class="btn btn-secondary">Enfer</button>
-            <button onclick="aff5()" type="button" class="btn btn-secondary">Hiver</button>
-            <button onclick="aff6()" type="button" class="btn btn-secondary">Marais</button>
+            <button onclick="aff4()" type="button" class="btn btn-secondary">Diabolic</button>
+            <button onclick="aff5()" type="button" class="btn btn-secondary">Winter</button>
+            <button onclick="aff6()" type="button" class="btn btn-secondary">Swamp</button>
             <button onclick="aff7()" type="button" class="btn btn-secondary">Désert</button>
             <button onclick="aff8()" type="button" class="btn btn-secondary">Fortification</button>
-            <button onclick="aff9()" type="button" class="btn btn-secondary">Elfe</button>
+            <button onclick="aff9()" type="button" class="btn btn-secondary">Tree city</button>
         </div><br>        
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
               <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Boisé
+                Forested
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <a onclick="aff1()" class="dropdown-item">Normal</a>
-                <a onclick="aff2()" class="dropdown-item">Rivière</a>
-                <a onclick="aff3()" class="dropdown-item">Montagne</a>
+                <a onclick="aff2()" class="dropdown-item">Water</a>
+                <a onclick="aff3()" class="dropdown-item">Mountain</a>
               </div>
             </div>
             <div class="btn-group" role="group">
               <button id="btnGroupDrop2" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Souterrain
+                Underground
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                <a onclick="aff10()" class="dropdown-item">Normal</a>
-                <a onclick="aff11()" class="dropdown-item">Eau</a>
-                <a onclick="aff12()" class="dropdown-item">Lave</a>
+                <a onclick="aff10()" class="dropdown-item">Cave</a>
+                <a onclick="aff11()" class="dropdown-item">Water</a>
+                <a onclick="aff12()" class="dropdown-item">Lava</a>
               </div>
             </div>
             <div class="btn-group" role="group">
               <button id="btnGroupDrop3" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Donjon
+                Dungeon
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
-                <a onclick="aff13()" class="dropdown-item">Normal</a>
-                <a onclick="aff14()" class="dropdown-item">Eau</a>
-                <a onclick="aff15()" class="dropdown-item">Lave</a>
+                <a onclick="aff13()" class="dropdown-item">Cave</a>
+                <a onclick="aff14()" class="dropdown-item">Water</a>
+                <a onclick="aff15()" class="dropdown-item">Lava</a>
                 <a onclick="aff16()" class="dropdown-item">Hall</a>
               </div>
             </div>
-            <button onclick="aff17()" type="button" class="btn btn-secondary">Personnel</button>
+            <button onclick="aff17()" type="button" class="btn btn-secondary">Custom</button>
         </div>
     </div>
     <div>
@@ -565,23 +565,23 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Télécharger la carte</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Download the battlemap</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            Taille d'une tuile en pixel : <input onchange="dimdim()" id="tuile_val" type="number" min="0">
-            <br><br>
-            Le fichier aura pour dimensions : <span id="dimensions"></span><span id="dimension grille"></span>
+          Tile's size (in pixels) : <input onchange="dimdim()" id="tuile_val" type="number" min="0">
+          <br><br>
+          File's dimensions : <span id="dimensions"></span><span id="dimension grille"></span>
             <br>
-            Taille de la grille en pixel : <input onchange="dimgrid()" id="grille_val" type="number" min="0">
+          Grid's size (in pixels) : <input onchange="dimgrid()" id="grille_val" type="number" min="0">
             <br>
-            Nom de la carte : <input type="text" id="nom de la carte">
+          Battlemap's name : <input type="text" id="nom de la carte">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button onclick="exportation()" type="button" class="btn btn-primary">Exporter en jpg</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button onclick="exportation()" type="button" class="btn btn-primary">Export in jpg</button>
         </div>
       </div>
     </div>

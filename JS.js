@@ -1,4 +1,4 @@
-var A = 17; // Nombre éléments +1
+var A = 18; // Nombre éléments +1
 function aff1(){  
     for (let i = 1; i < A; i++) {var x = "BMT"+i;document.getElementById(x).style.display = "none";}
     document.getElementById('BMT1').style.display = "block";
@@ -62,6 +62,10 @@ function aff15(){
 function aff16(){  
     for (let i = 1; i < A; i++) {var x = "BMT"+i;document.getElementById(x).style.display = "none";}
     document.getElementById('BMT16').style.display = "block";
+}
+function aff17(){  
+    for (let i = 1; i < A; i++) {var x = "BMT"+i;document.getElementById(x).style.display = "none";}
+    document.getElementById('BMT17').style.display = "block";
 }
 
 function gen() {
@@ -206,4 +210,27 @@ function dimgrid(){
     var largeur_aff = Number(largeur)/Number(grille);
     var hauteur_aff = Number(hauteur)/Number(grille);
     document.getElementById('dimension grille').innerHTML = "<br>["+largeur_aff+"] ["+hauteur_aff+"]";
+}
+
+function previewImage() {
+    var file = document.getElementById("file").files;
+    if (file.length > 0) {     
+        for (let i = 0; i < file.length; i++) {
+            var fileReader = new FileReader();
+
+        fileReader.onload = function (event) {
+            $("#BMT17").append( '<img draggable="true" ondragstart="drag(event)" class="IMAGE_AFF" src='+event.target.result+'>' );
+        };
+
+        fileReader.readAsDataURL(file[i]);
+        }
+    }
+}
+
+function imagelink(){
+    var lien = document.getElementById("inputLink").value;
+    if(lien != ""){
+        $("#BMT17").append( '<img draggable="true" ondragstart="drag(event)" class="IMAGE_AFF" src='+lien+'>' );
+        document.getElementById("inputLink").value = "";
+    }
 }
