@@ -159,11 +159,12 @@ function exportation() {
     var grid = document.getElementById('dimension grille').innerHTML;
     var grid = grid.replace('<br>','');
     var nom = document.getElementById("nom de la carte").value;if(nom == ""){var nom = "Battlemap";}
+    var type = document.getElementById("type_fichier").value;if(type == ""){var type = "jpg";}
     var exportname = nom+" "+grid;
     $(".DropZone").css('border','none');
   domtoimage.toBlob(document.getElementById('Emplacement_Drop'))
     .then(function(blob) {
-      window.saveAs(blob, exportname+'.jpg');
+      window.saveAs(blob, exportname+'.'+type);
     });
 }
 

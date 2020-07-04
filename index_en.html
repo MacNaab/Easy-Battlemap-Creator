@@ -571,17 +571,24 @@
           </button>
         </div>
         <div class="modal-body">
-          Tile's size (in pixels) : <input onchange="dimdim()" id="tuile_val" type="number" min="0">
+          Tile's size (in pixels) : <input style="max-width: 100px;" onchange="dimdim()" id="tuile_val" type="number" min="0">
+            <br>
+          Grid's size (in pixels) : <input style="max-width: 100px;" onchange="dimgrid()" id="grille_val" type="number" min="0">
           <br><br>
           File's dimensions : <span id="dimensions"></span><span id="dimension grille"></span>
-            <br>
-          Grid's size (in pixels) : <input onchange="dimgrid()" id="grille_val" type="number" min="0">
-            <br>
-          Battlemap's name : <input type="text" id="nom de la carte">
+            <br><br>
+          Battlemap's name : <input style="max-width: 200px;" type="text" id="nom de la carte">
+          <br>
+          <select style="max-width: 200px;margin-top: 5px;" id="type_fichier" class="custom-select">
+            <option selected>Image's type</option>
+            <option value="jpg">jpg</option>
+            <option value="png">png</option>
+          </select>
+          <br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button onclick="exportation()" type="button" class="btn btn-primary">Export in jpg</button>
+          <button onclick="exportation()" type="button" class="btn btn-primary">Export</button>
         </div>
       </div>
     </div>

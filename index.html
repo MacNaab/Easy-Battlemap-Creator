@@ -571,17 +571,24 @@
           </button>
         </div>
         <div class="modal-body">
-            Taille d'une tuile en pixel : <input onchange="dimdim()" id="tuile_val" type="number" min="0">
-            <br><br>
+            Taille d'une tuile en pixel : <input style="max-width: 100px;" onchange="dimdim()" id="tuile_val" type="number" min="0">
+            <br>
+            Taille de la grille en pixel : <input style="max-width: 100px;"onchange="dimgrid()" id="grille_val" type="number" min="0">
+             <br><br>
             Le fichier aura pour dimensions : <span id="dimensions"></span><span id="dimension grille"></span>
+           <br><br>
+            Nom de la carte : <input style="max-width: 200px;" type="text" id="nom de la carte">
             <br>
-            Taille de la grille en pixel : <input onchange="dimgrid()" id="grille_val" type="number" min="0">
+            <select style="max-width: 200px;margin-top: 5px;" id="type_fichier" class="custom-select">
+              <option selected>Type d'image</option>
+              <option value="jpg">jpg</option>
+              <option value="png">png</option>
+            </select>
             <br>
-            Nom de la carte : <input type="text" id="nom de la carte">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button onclick="exportation()" type="button" class="btn btn-primary">Exporter en jpg</button>
+          <button onclick="exportation()" type="button" class="btn btn-primary">Exporter l'image</button>
         </div>
       </div>
     </div>
