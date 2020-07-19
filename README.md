@@ -24,3 +24,7 @@ Features:
 - Allows you to choose the name of the file
 - Allows you to add your own tiles: directly or by url link
 - Allows you to export the map as a .jpg or .png
+
+-----------------------------------------
+
+Try it at https://macnaab.github.io/Easy-Battlemap-Creator/index_en.html
