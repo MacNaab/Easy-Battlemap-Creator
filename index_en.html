@@ -99,8 +99,10 @@
       </button>
     </div>
     <br>
-    <div id="Emplacement_Drop" style="text-align: center;font-size: 0;scroll-behavior: auto;">
-    </div>
+	<div style="margin:auto;text-align:center;">
+		<div id="container" style="margin-left:calc((100vw - 684px)/2)">
+		</div>
+	</div>
 
     <div style="text-align: center;">
         <button class="btn btn-info" onclick="Rotation90()">
@@ -136,11 +138,11 @@
           </button>
         </div>
         <div class="modal-body">
-          Tile's size (in pixels) : <input style="max-width: 100px;" onchange="dimdim()" id="tuile_val" type="number" min="0">
-            <br>
-          Grid's size (in pixels) : <input style="max-width: 100px;" onchange="dimgrid()" id="grille_val" type="number" min="0">
-          <br><br>
           File's dimensions : <span id="dimensions"></span><span id="dimension grille"></span>
+			<br>
+          Ratio : <input style="max-width: 100px;" onchange="dimdim()" id="tuile_val" type="number" min="0" value="1">
+			<br>
+          Tile's dimension : <input style="max-width: 100px;" onchange="dimgrid(this.value);" type="number" min="0" value="1">
             <br><br>
           Battlemap's name : <input style="max-width: 200px;" type="text" id="nom de la carte">
           <br>
