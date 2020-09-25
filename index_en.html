@@ -11,6 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/konva@7.1.0/konva.min.js"></script>
     <script src="JS_en.js"></script>
     <link rel="stylesheet" href="CSS.css">
   </head>
@@ -159,4 +160,189 @@
   </div>
     </div>
   </body>
+
+<script>
+    var stage = new Konva.Stage({
+        container: 'container',
+        width: 684,
+        height: 684,
+    });
+
+    var layer = new Konva.Layer();
+
+    // add the layer to the stage
+    stage.add(layer);
+</script>
+
+<script>
+var lacible2 = [];
+
+function gen(){
+	if(layer.children.length){
+		layer.find('Rect').destroy();
+		layer.find('Image').destroy();
+		layer.batchDraw();
+	}
+
+
+	var ligne = document.getElementById('inputLigne').value;
+	var colonne = document.getElementById('inputColonne').value;
+
+	if(ligne > colonne){var T = Number(Math.floor(684/ligne));}
+	else{var T = Number(Math.floor(684/colonne));}
+	
+	document.getElementById('dimensions').innerHTML = 'width: '+T*colonne+', height: '+T*ligne;
+
+	var val_x = [];
+	var val_y = [];
+
+	for (let i = 0; i < ligne; i++) {
+		val_y.push(T*Number(i));
+	}
+	for (let i = 0; i < colonne; i++) {
+		val_x.push(T*Number(i));
+	}
+
+	if(colonne == ligne){
+		for (let i = 0; i < Number(ligne)*Number(colonne); i++) {
+			var rect1 = new Konva.Rect({
+				x: val_x[Math.ceil(Number(i)/Number(colonne))],
+				y: val_y[Math.ceil(Number(i)%Number(ligne))],
+				width: T,
+				height: T,
+				fill: Konva.Util.getRandomColor(),
+				stroke: 'black',
+				strokeWidth: 4,
+				id: i,
+			});
+			// add the shape to the layer
+			layer.add(rect1);
+			lacible2.push({x: val_x[Math.ceil(Number(i)/Number(colonne))],y: val_y[Math.ceil(Number(i)%Number(ligne))],});
+		}
+	}
+	else{
+		for (let i = 0; i < Number(ligne)*Number(colonne); i++) {
+			var rect1 = new Konva.Rect({
+				x: val_x[Math.ceil(Number(i)%Number(colonne))],
+				y: val_y[Math.ceil(Number(i)%Number(ligne))],
+				width: T,
+				height: T,
+				fill: Konva.Util.getRandomColor(),
+				stroke: 'black',
+				strokeWidth: 4,
+				id: i,
+			});
+			// add the shape to the layer
+			layer.add(rect1);
+		}
+	}
+	layer.batchDraw();
+	clickclicked();
+}
+</script>
+
+<script>
+var val_1 = "";
+function clickclicked(){
+	    layer.on('dblclick dbltap', function (e) {
+		var dtb = e.target.attrs;
+        e.target.destroy();
+
+	val_1 = dtb.width/2;
+
+	var image = new Image();
+	image.crossOrigin = 'Anonymous';
+	image.src = réserve_image_src;
+
+	var scalX = Number(image.width)/Number(dtb.width);
+	var scalY = Number(image.height)/Number(dtb.height);
+
+	var carte = new Konva.Image({
+		x: lacible2[dtb.id].x,
+		y: lacible2[dtb.id].y,
+		image: image,
+		width: dtb.width,
+		height: dtb.width,
+		id: dtb.id,
+//		rotation: 0,
+//		offsetX: ,
+//		offsetY: dtb.width/2,
+	})
+    layer.add(carte);
+		layer.batchDraw();
+	});
+
+	layer.on('click tap', function (e) {
+		lacible.pop();
+		lacible.push(e.target);
+		var dtb = e.target.attrs;
+	});
+}
+</script>
+
+<script>
+var lacible = ['test'];
+function Rotation90(){
+lacible[0].absolutePosition({
+	x: lacible2[lacible[0].attrs.id].x+val_1,
+	y: lacible2[lacible[0].attrs.id].y+val_1,
+});
+		lacible[0].offsetX(val_1);
+		lacible[0].offsetY(val_1);
+		lacible[0].rotate(90);
+		layer.batchDraw();
+}
+function RotationM90(){
+lacible[0].absolutePosition({
+	x: lacible2[lacible[0].attrs.id].x+val_1,
+	y: lacible2[lacible[0].attrs.id].y+val_1,
+});
+		lacible[0].offsetX(val_1);
+		lacible[0].offsetY(val_1);
+		lacible[0].rotate(-90);
+		layer.batchDraw();
+}
+</script>
+
+<script>
+var réserve_image_src = "";
+function fn_img(e){
+	réserve_image_src = e;
+}
+</script>
+
+<script>
+// function from https://stackoverflow.com/a/15832662/512042
+function downloadURI(uri, name) {
+    var link = document.createElement('a');
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    delete link;
+}
+
+function exportation() {
+    var nom = document.getElementById("nom de la carte").value;if(nom == ""){var nom = "Battlemap";}
+    var type = document.getElementById("type_fichier").value;if(type == ""){var type = "jpg";}
+
+	var ligne = document.getElementById('inputLigne').value;
+	var colonne = document.getElementById('inputColonne').value;
+
+	if(ligne > colonne){var T = Number(Math.floor(684/ligne));}else{var T = Number(Math.floor(684/colonne));}
+	
+stage.size({
+  width: T*colonne,
+  height: T*ligne,
+});
+
+    var ratio = document.getElementById('tuile_val').value;
+
+    var dataURL = stage.toDataURL({ pixelRatio: ratio });
+	console.log(dataURL);
+	downloadURI(dataURL, nom+'.'+type);
+}
+</script>
+
 </html>
