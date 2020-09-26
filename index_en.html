@@ -251,6 +251,7 @@ function clickclicked(){
         e.target.destroy();
 
 	val_1 = dtb.width/2;
+		    alert(réserve_image_src);
 
 	var image = new Image();
 	image.crossOrigin = 'Anonymous';
@@ -308,6 +309,11 @@ lacible[0].absolutePosition({
 
 <script>
 var réserve_image_src = "";
+$( document ).ready(function() {
+    $( "img" ).on( "click touch", function() {
+	réserve_image_src = $(this).attr('src');
+    });
+});
 function fn_img(e){
 	réserve_image_src = e;
 }
