@@ -166,8 +166,8 @@
 <script>
     var stage = new Konva.Stage({
         container: 'container',
-        width: window.innerWidth-50,
-        height: window.innerWidth-50,
+        width: window.innerHeight-50,
+        height: window.innerHeight-50,
     });
 
     var layer = new Konva.Layer();
@@ -190,8 +190,8 @@ function gen(){
 	var ligne = document.getElementById('inputLigne').value;
 	var colonne = document.getElementById('inputColonne').value;
 
-	if(ligne > colonne){var T = Number(Math.floor((window.innerWidth-50)/ligne));}
-	else{var T = Number(Math.floor((window.innerWidth-50)/colonne));}
+	if(ligne > colonne){var T = Number(Math.floor((window.innerHeight-50)/ligne));}
+	else{var T = Number(Math.floor((window.innerHeight-50)/colonne));}
 	
 	document.getElementById('dimensions').innerHTML = 'width: '+T*colonne+', height: '+T*ligne;
 
@@ -339,7 +339,7 @@ function exportation() {
 	var ligne = document.getElementById('inputLigne').value;
 	var colonne = document.getElementById('inputColonne').value;
 
-	if(ligne > colonne){var T = Number(Math.floor((window.innerWidth-50)/ligne));}else{var T = Number(Math.floor((window.innerWidth-50)/colonne));}
+	if(ligne > colonne){var T = Number(Math.floor((window.innerHeight-50)/ligne));}else{var T = Number(Math.floor((window.innerHeight-50)/colonne));}
 	
 stage.size({
   width: T*colonne,
