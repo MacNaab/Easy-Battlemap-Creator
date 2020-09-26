@@ -9,7 +9,7 @@ function dimdim(){
     var grille = document.getElementById('tuile_val').value;
 	var ligne = document.getElementById('inputLigne').value;
 	var colonne = document.getElementById('inputColonne').value;
-	if(ligne > colonne){var T = Number(Math.floor((window.innerWidth-50)/ligne));}else{var T = Number(Math.floor((window.innerWidth-50)/colonne));}
+	if(ligne > colonne){var T = Number(Math.floor((window.innerHeight-50)/ligne));}else{var T = Number(Math.floor((window.innerHeight-50)/colonne));}
 		var largeur = T*colonne;
 		var hauteur = T*ligne;
 	document.getElementById('dimensions').innerHTML = 'width: '+T*colonne*grille+', height: '+T*ligne*grille;
@@ -18,7 +18,7 @@ function dimdim(){
 function dimgrid(e){
 	var ligne = document.getElementById('inputLigne').value;
 	var colonne = document.getElementById('inputColonne').value;
-	if(ligne > colonne){var T = Number(Math.floor((window.innerWidth-50)/ligne));}else{var T = Number(Math.floor((window.innerWidth-50)/colonne));}
+	if(ligne > colonne){var T = Number(Math.floor((window.innerHeight-50)/ligne));}else{var T = Number(Math.floor((window.innerHeight-50)/colonne));}
 		document.getElementById('tuile_val').value = Number(e)/Number(T);
 		dimdim()
 }
