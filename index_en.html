@@ -311,6 +311,8 @@ var réserve_image_src = "";
 $( document ).ready(function() {
     $( "img" ).on( "click touch", function() {
 	réserve_image_src = $(this).attr('src');
+	$( "img" ).removeClass	( "yourClass" );
+	$(this).addClass( "yourClass" );
     });
 });
 </script>
