@@ -110,3 +110,11 @@ function imagelink(){
 	image_change();
     }
 }
+
+$( document ).ready(function() {
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var calc = (Number(width)-Number(height)-15)/2;
+      var calc2 = Number(height)-15;
+	$(".centrerlekonva").css({"margin-left": calc+"px","width":calc2+"px"});
+});
