@@ -30,18 +30,20 @@ function previewImage() {
             var fileReader = new FileReader();
 
         fileReader.onload = function (event) {
-            $("#BMT2").append( '<img draggable="true" ondragstart="drag(event)" class="IMAGE_AFF" src='+event.target.result+'>' );
+            $("#BMT2").append( '<img class="IMAGE_AFF" src='+event.target.result+'>' );
         };
 
         fileReader.readAsDataURL(file[i]);
         }
+	image_change();
     }
 }
 
 function imagelink(){
     var lien = document.getElementById("inputLink").value;
     if(lien != ""){
-        $("#BMT2").append( '<img draggable="true" ondragstart="drag(event)" class="IMAGE_AFF" src='+lien+'>' );
+        $("#BMT2").append( '<img class="IMAGE_AFF" src='+lien+'>' );
         document.getElementById("inputLink").value = "";
+	image_change();
     }
 }
