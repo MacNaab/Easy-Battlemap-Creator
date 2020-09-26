@@ -309,12 +309,15 @@ lacible[0].absolutePosition({
 <script>
 var réserve_image_src = "";
 $( document ).ready(function() {
+	image_change();
+});
+function image_change(){
     $( "img" ).on( "click touch", function() {
 	réserve_image_src = $(this).attr('src');
 	$( "img" ).removeClass	( "yourClass" );
 	$(this).addClass( "yourClass" );
     });
-});
+}
 </script>
 
 <script>
