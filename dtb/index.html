@@ -18,6 +18,9 @@
   </head>
   <body>
     <h1>Bestiaire!</h1>
+<div class="form-group center" style="width:250px">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+</div>
     <table class="table table-bordered table-hover table-responsive">
   <thead class="thead-dark">
     <tr>
@@ -42,6 +45,14 @@
 $.getJSON('bestaire.json', function(jd) {
   jd.Base.forEach(function(item){$('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>Base</td></th>');});
   jd.Unofficiel.forEach(function(item){$('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>Unofficiel</td></th>');});	
-});  
+});
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("tbody tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
   </script>
 </html>
