@@ -31,11 +31,11 @@ function previewImage() {
 
         fileReader.onload = function (event) {
             $("#BMT2").append( '<img class="IMAGE_AFF" src='+event.target.result+'>' );
+		image_change();
         };
 
         fileReader.readAsDataURL(file[i]);
         }
-	image_change();
     }
 }
 
