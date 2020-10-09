@@ -1,8 +1,7 @@
 var A = 3; // Nombre éléments +1
 function aff_img(sel){  
     for (let i = 1; i < A; i++) {var x = "BMT"+i;document.getElementById(x).style.display = "none";}
-	var value = sel.value; 
-	document.getElementById('BMT'+value).style.display = "block";
+	if(sel.value != "Asset"){var value = sel.value;document.getElementById('BMT'+value).style.display = "block";}
 }
 
 function dimdim(){
