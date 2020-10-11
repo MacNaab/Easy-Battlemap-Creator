@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- USE DEVELOPMENT VERSION -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/konva@7.1.3/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Transform Events Demo</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      #menu {
+        display: none;
+        position: absolute;
+        width: 75px;
+        background-color: white;
+        box-shadow: 0 0 5px grey;
+        border-radius: 3px;
+      }
+      #menu button {
+        width: 100%;
+        background-color: white;
+        border: none;
+        margin: 0;
+        padding: 10px;
+      }
+      #menu button:hover {
+        background-color: lightgray;
+      }
+	  .minimap{
+		width:50px;
+		height:50px;
+	  }
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+    .class1{
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-top: 15px;
+    }
+    </style>
+  </head>
+
+  <body>
+	<div class="class1">
+		<h1>Guide d'utilisation:</h1>
+		<div>
+			Déplacer un élément: souris.<br>
+			Double click sur un élément pour ouvrir les options de modifications. Echap ou clic en dehors pour les fermer.<br>
+			Clic droit sur un élément pour ouvrir menu de suppression.
+		</div>
+    <h1>I. BG</h1>
+    <div class="grid-container">
+      <img class="minimap" src="Assets/BG1.png">
+      <div>Changer de BG: <input type="file" id="file" accept="image/*" onchange="previewBG(this.files);"></div>
+		</div>
+    <h1>II. Manoir</h1>
+    <div class="grid-container">
+      <div>
+        Assets By Cze & Peku:<br>
+        <img onclick="aa(1,'CP')" class="minimap" src="Assets/CzePeku/Domaine.png">
+        <img onclick="aa(0,'CP')" class="minimap" src="Assets/CzePeku/Domaine2.jpg">
+      </div>
+      <div>
+        Assets By The Crafty Dice:<br>
+        <img onclick="aa(0,'CD')" class="minimap" src="Assets/CraftyDice/Domaine.png">
+      </div>
+
+			<div>Importer son manoir: <input type="file" id="file" accept="image/*" onchange="previewImage(this.files);"></div>
+		</div>
+    <h1>III. Améliorations</h1>
+    <div class="grid-container">
+      <div>
+        Assets By Cze & Peku:<br>
+        <img onclick="aa(2,'CP')" class="minimap" src="Assets/CzePeku/Atelier.png">
+        <img onclick="aa(3,'CP')" class="minimap" src="Assets/CzePeku/Baraquement.png">
+        <img onclick="aa(4,'CP')" class="minimap" src="Assets/CzePeku/Médecin.png">
+        <img onclick="aa(5,'CP')" class="minimap" src="Assets/CzePeku/Serre.png">
+        <img onclick="aa(6,'CP')" class="minimap" src="Assets/CzePeku/Terrain de chasse.png">
+      </div>
+      <div>
+        Assets By The Crafty Dice:<br>
+        <img onclick="aa(1,'CD')" class="minimap" src="Assets/CraftyDice/Atelier1.png">
+        <img onclick="aa(2,'CD')" class="minimap" src="Assets/CraftyDice/Atelier2.png">
+        <img onclick="aa(3,'CD')" class="minimap" src="Assets/CraftyDice/Baraquement.png">
+        <img onclick="aa(4,'CD')" class="minimap" src="Assets/CraftyDice/Sous-sol.png">
+        <img onclick="aa(5,'CD')" class="minimap" src="Assets/CraftyDice/Serre.png">
+        <img onclick="aa(6,'CD')" class="minimap" src="Assets/CraftyDice/Chasse.png">
+      </div>
+      <div>Importer son amélioration: <input type="file" id="file" accept="image/*" onchange="previewImage(this.files);previewImage(this.files);"></div>
+    </div>
+	</div>
+  <br>
+	<div class="class1 grid-container">
+    <div>
+      Dimensions actuelles de la carte:<br><input type="number" min="1" id="width_val" onchange="dimensions('A',this.value)"><input type="number" min="1" id="height_val" onchange="dimensions('B',this.value)"> (ratio    <input type="number" min="0" id="ratio_val" value="1" onchange="dimensions('R',this.value)">)
+    </div>
+    <div>
+      <div>
+        Nom de la carte: <input style="max-width: 200px;" type="text" id="nom de la carte">, 
+      </div>
+      <select id="type_fichier">
+        <option value="" selected>Type d'image</option>
+        <option value="jpg">jpg</option>
+        <option value="png">png</option>
+      </select>
+    </div>
+  </div>
+  <div style="text-align: center;margin-bottom: 15px;">
+    <button onclick="exportation()">Télécharger</button>
+  </div>
+  
+  	<div>
+    	<div id="container" style="margin-left:25px"></div>
+		   <div id="menu">
+				<div><button id="delete-button">Supprimer</button></div>
+			</div>
+	</div>
+
+    <script>
+      var imageBG = new Image();
+//      imageBG.setAttribute('crossOrigin', 'anonymous');
+      imageBG.src = 'Assets/BG1.png';
+	  
+      var width = window.innerWidth-50;
+      var height = window.innerHeight;
+	  
+	  document.getElementById('container').style.height = imageBG.height*width/imageBG.width;
+
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: width,
+        height: imageBG.height*width/imageBG.width,
+      });
+
+      var layer = new Konva.Layer();
+      stage.add(layer);
+
+
+imageBG.onload = function () {
+  var BG = new Konva.Image({
+    x: 0,
+    y: 0,
+    image: imageBG,
+    width: width,
+    height: imageBG.height*width/imageBG.width,
+	  id: 'BG',
+  });
+  // add the shape to the layer
+  layer.add(BG);
+  layer.batchDraw();
+      };      
+    </script>
+	<script>
+function aa(k,L){
+  if(L=='CP'){
+		var stock_IMG = ['Assets/CzePeku/Domaine2.png','Assets/CzePeku/Domaine.png','Assets/CzePeku/Atelier.png','Assets/CzePeku/Baraquement.png','Assets/CzePeku/Médecin.png','Assets/CzePeku/Serre.png','Assets/CzePeku/Terrain de chasse.png'];
+  }
+  if(L=='CD'){
+    var stock_IMG = ['Assets/CraftyDice/Domaine.png',"Assets/CraftyDice/Atelier1.png","Assets/CraftyDice/Atelier2.png","Assets/CraftyDice/Baraquement.png","Assets/CraftyDice/Sous-sol.png","Assets/CraftyDice/Serre.png","Assets/CraftyDice/Chasse.png"];
+  }
+      // main API:
+      var imageObj = new Image();
+      imageObj.src = stock_IMG[k];
+      imageObj.setAttribute('crossOrigin', 'anonymous');
+		  var facteur = width/3/imageObj.width;
+  
+      var i = 0;
+      imageObj.onload = function () {
+        i = i+1;
+        if(i == 1){
+          var rect2 = new Konva.Image({
+          x: 50,
+          y: 50,
+          image: imageObj,
+          width: width/3,
+          height: imageObj.height*facteur,
+          draggable: true,
+        });
+
+        // add the shape to the layer
+        layer.add(rect2);
+		    layer.draw();
+        aa2();
+        }
+      };
+}
+
+function aa2(){
+      // setup menu
+      let currentShape;
+      var menuNode = document.getElementById('menu');
+      document.getElementById('delete-button').addEventListener('click', () => {
+        currentShape.destroy();
+        layer.draw();
+      });
+	  
+	stage.on('dblclick', function (e) {
+		e.evt.preventDefault();
+        if (e.target === stage || e.target.attrs.id == "BG") {
+          // if we are on empty place of the stage we will do nothing
+          return;
+        }	 
+        currentShape = e.target;
+	    var tr = new Konva.Transformer();
+		layer.add(tr);
+			tr.nodes([currentShape]);
+		layer.draw();
+			stage.on('click', function (f) {
+				tr.destroy();layer.draw();
+			});
+			document.onkeydown = function(evt) {
+				evt = evt || window.event;
+				if (evt.keyCode == 27) {tr.destroy();layer.draw();}
+			};
+	});
+	  
+
+      window.addEventListener('click', () => {
+        // hide menu
+        menuNode.style.display = 'none';
+      });
+
+      stage.on('contextmenu', function (e) {
+        // prevent default behavior
+        e.evt.preventDefault();
+        if (e.target === stage || e.target.attrs.id == "BG") {
+          // if we are on empty place of the stage we will do nothing
+          return;
+        }
+        currentShape = e.target;
+        // show menu
+        menuNode.style.display = 'initial';
+        var containerRect = stage.container().getBoundingClientRect();
+        console.log(containerRect);
+        menuNode.style.bottom = -stage.getPointerPosition().y - 100 + 'px';
+        menuNode.style.left =
+          containerRect.left + stage.getPointerPosition().x + 4 + 'px';
+
+          console.log(menuNode.style);
+      });
+}
+    </script>
+	
+	<script>
+function previewBG(file) {
+    if (file.length > 0) {     
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(file[0]);
+        fileReader.onload = function (event) {
+			aaaaBG(event.target.result);
+        };
+    }
+
+}
+function aaaaBG(e){
+	var Shape = stage.find('#BG')[0];
+    var NewimageBG = new Image();
+	  NewimageBG.src = e;
+    NewimageBG.setAttribute('crossOrigin', 'anonymous');
+        stage.height(NewimageBG.height*width/NewimageBG.width);
+	NewimageBG.onload = function () {
+		Shape.image(NewimageBG);
+        Shape.height(NewimageBG.height*width/NewimageBG.width);
+		layer.batchDraw();
+	};
+}	
+function previewImage(file) {
+    if (file.length > 0) {     
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(file[0]);
+        fileReader.onload = function (event) {
+			aaaa(event.target.result);
+        };
+    }
+}
+function aaaa(e){
+      // main API:
+      var imageObj = new Image();
+      imageObj.src = e;
+	    var facteur = width/3/imageObj.width;
+
+      imageObj.onloadend = function () {
+        var rect = new Konva.Image({
+          x: 50,
+          y: 50,
+          image: imageObj,
+          width: width/3,
+          height: imageObj.height*facteur,
+          draggable: true,
+        });
+        // add the shape to the layer
+         layer.add(rect);
+        layer.batchDraw();
+      };
+  	  aa2();
+}
+	</script>
+<script>
+  // function from https://stackoverflow.com/a/15832662/512042
+  function downloadURI(uri, name) {
+      var link = document.createElement('a');
+      link.download = name;
+      link.href = uri;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      delete link;
+  }
+  
+  function exportation() {
+    var nom = document.getElementById("nom de la carte").value;if(nom == ""){var nom = "Battlemap";}
+    var type = document.getElementById("type_fichier").value;if(type == ""){var type = "jpg";}
+   
+  stage.size({
+    width: stage.width(),
+    height: stage.height(),
+  });
+  
+  var ratio = document.getElementById('ratio_val').value;
+    var dataURL = stage.toDataURL({ pixelRatio: ratio });
+    downloadURI(dataURL, nom+'.'+type);
+  }
+  </script>
+  <script>
+    function dimensions(e,f){
+      if(e == 'R'){ // Ratio
+        $('#width_val').val(stage.width()*f);
+        $('#height_val').val(stage.height()*f);
+      }
+      if(e == 'A'){ // Width
+        // f = ? * SH
+        var R = f/stage.width();
+        $('#ratio_val').val(R);
+        $('#height_val').val(stage.height()*R);
+      }
+      if(e == 'B'){ // Height
+        var R = f/stage.height();
+        $('#ratio_val').val(R);
+        $('#width_val').val(stage.width()*R);
+      }
+    }
+    dimensions('R','1');$('#ratio_val').val(1);
+  </script>
+	
+	
+  </body>
+</html>
