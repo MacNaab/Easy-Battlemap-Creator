@@ -72,7 +72,7 @@ $.getJSON('bestaire.json', function(jd) {
   jd.Base.forEach(function(item){
 		var Ca = "";for (var [key, value] of Object.entries(item.Caract)) {Ca=Ca+`${key}: ${value}`+'<br>';}
 		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
-		var Ar = "";var Ar2 = [];item.Arme.forEach(function (item2){Ar2.push(Object.values(item2));});Ar2.forEach(function (item2){Ar=Ar+Object.values(item2)+'<br>';});
+		var Ar = "";var Ar2 = "";if(item.Arme){item.Arme.forEach(function (item2){Ar2 = Ar2+"<tr><th scope='row'>"+item2.Nom+"</th><td>"+item2.DMG+"</td><td>"+item2.Effet+"</td><td>"+item2.AttTour+"</td></tr>";});Ar = '<table class="table table-striped"><thead><tr><th scope="col">Nom</th><th scope="col">DMG</th><th scope="col">Effet</th><th scope="col">Att/tour</th></tr></thead><tbody>'+Ar2+'</tbody></table>';}
 		var Cap = "";item.Capacités.forEach(function(item2){Cap=Cap+item2+"<br>"});
 		var Vul = "";item.Vulnérabilités.forEach(function(item2){Vul=Vul+item2+"<br>"});
     $('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>'+Ca+'</td><td>'+Co+'</td><td>'+item.Armure+'</td><td>'+Ar+'</td><td>'+Vul+'</td><td>'+Cap+'</td><td>'+item.Note+'</td><td>Base</td></th>');
@@ -80,19 +80,7 @@ $.getJSON('bestaire.json', function(jd) {
   jd.Unofficiel.forEach(function(item){
 		var Ca = "";for (var [key, value] of Object.entries(item.Caract)) {Ca=Ca+`${key}: ${value}`+'<br>';}
 		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
-		var Ar = "";var Ar2 = "";
-	  	if(item.Arme){
-	 	 	item.Arme.forEach(function (item2){
-	//			console.log(item2);
-				console.log(Ar2);
-				console.log(item2.Nom);
-				console.log(item2.DMG);
-				console.log(item2.Effet);
-				console.log(item2.AttTour);
-				Ar2 = Ar2+"<tr><th scope='row'>"+item2.Nom+"</th><td>"+item2.DMG+"</td><td>"+item2.Effet+"</td><td>"+item2.AttTour+"</td></tr>";
-			});
-			Ar = '<table class="table table-striped"><thead><tr><th scope="col">Nom</th><th scope="col">DMG</th><th scope="col">Effet</th><th scope="col">Att/tour</th></tr></thead><tbody>'+Ar2+'</tbody></table>';
-		}
+		var Ar = "";var Ar2 = "";if(item.Arme){item.Arme.forEach(function (item2){Ar2 = Ar2+"<tr><th scope='row'>"+item2.Nom+"</th><td>"+item2.DMG+"</td><td>"+item2.Effet+"</td><td>"+item2.AttTour+"</td></tr>";});Ar = '<table class="table table-striped"><thead><tr><th scope="col">Nom</th><th scope="col">DMG</th><th scope="col">Effet</th><th scope="col">Att/tour</th></tr></thead><tbody>'+Ar2+'</tbody></table>';}
 		var Cap = "";item.Capacités.forEach(function(item2){Cap=Cap+item2+"<br>"});
 		var Vul = "";item.Vulnérabilités.forEach(function(item2){Vul=Vul+item2+"<br>"});
     $('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>'+Ca+'</td><td>'+Co+'</td><td>'+item.Armure+'</td><td>'+Ar+'</td><td>'+Vul+'</td><td>'+Cap+'</td><td>'+item.Note+'</td><td>Unofficiel</td></th>');
@@ -100,7 +88,7 @@ $.getJSON('bestaire.json', function(jd) {
   jd.Site.forEach(function(item){
 		var Ca = "";for (var [key, value] of Object.entries(item.Caract)) {Ca=Ca+`${key}: ${value}`+'<br>';}
 		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
-		var Ar = "";var Ar2 = [];item.Arme.forEach(function (item2){Ar2.push(Object.values(item2));});Ar2.forEach(function (item2){Ar=Ar+Object.values(item2)+'<br>';});
+		var Ar = "";var Ar2 = "";if(item.Arme){item.Arme.forEach(function (item2){Ar2 = Ar2+"<tr><th scope='row'>"+item2.Nom+"</th><td>"+item2.DMG+"</td><td>"+item2.Effet+"</td><td>"+item2.AttTour+"</td></tr>";});Ar = '<table class="table table-striped"><thead><tr><th scope="col">Nom</th><th scope="col">DMG</th><th scope="col">Effet</th><th scope="col">Att/tour</th></tr></thead><tbody>'+Ar2+'</tbody></table>';}
 		var Cap = "";item.Capacités.forEach(function(item2){Cap=Cap+item2+"<br>"});
 		var Vul = "";item.Vulnérabilités.forEach(function(item2){Vul=Vul+item2+"<br>"});
     $('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>'+Ca+'</td><td>'+Co+'</td><td>'+item.Armure+'</td><td>'+Ar+'</td><td>'+Vul+'</td><td>'+Cap+'</td><td>'+item.Note+'</td><td>the-witcher-jdr.fr</td></th>');
