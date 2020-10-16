@@ -52,6 +52,12 @@
       <th scope="col">Environnement</th>
       <th scope="col">Intelligence</th>
       <th scope="col">Organisation</th>
+      <th scope="col">Caractéristiques</th>
+      <th scope="col">Compétences</th>
+      <th scope="col">Armure</th>
+      <th scope="col">Arme<br>(Nom,DMG,Effet,Att/tour)</th>
+      <th scope="col">Vulnérabilités</th>
+      <th scope="col">Capacités</th>
       <th scope="col">Provenance</th>
     </tr>
   </thead>
@@ -62,9 +68,30 @@
   </body>
   <script>
 $.getJSON('bestaire.json', function(jd) {
-  jd.Base.forEach(function(item){$('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>Base</td></th>');});
-  jd.Unofficiel.forEach(function(item){$('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>Unofficiel</td></th>');});	
-  jd.Site.forEach(function(item){$('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>the-witcher-jdr.fr</td></th>');});	
+  jd.Base.forEach(function(item){
+		var Ca = "";for (var [key, value] of Object.entries(item.Caract)) {Ca=Ca+`${key}: ${value}`+'<br>';}
+		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
+		var Ar = "";var Ar2 = [];item.Arme.forEach(function (item2){Ar2.push(Object.values(item2));});Ar2.forEach(function (item2){Ar=Ar+Object.values(item2)+'<br>';});
+		var Cap = "";item.Capacités.forEach(function(item2){Cap=Cap+item2+"<br>"});
+		var Vul = "";item.Vulnérabilités.forEach(function(item2){Vul=Vul+item2+"<br>"});
+    $('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>'+Ca+'</td><td>'+Co+'</td><td>'+item.Armure+'</td><td>'+Ar+'</td><td>'+Vul+'</td><td>'+Cap+'</td><td>'+item.Note+'</td><td>Base</td></th>');
+	});
+  jd.Unofficiel.forEach(function(item){
+		var Ca = "";for (var [key, value] of Object.entries(item.Caract)) {Ca=Ca+`${key}: ${value}`+'<br>';}
+		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
+		var Ar = "";var Ar2 = [];item.Arme.forEach(function (item2){Ar2.push(Object.values(item2));});Ar2.forEach(function (item2){Ar=Ar+Object.values(item2)+'<br>';});
+		var Cap = "";item.Capacités.forEach(function(item2){Cap=Cap+item2+"<br>"});
+		var Vul = "";item.Vulnérabilités.forEach(function(item2){Vul=Vul+item2+"<br>"});
+    $('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>'+Ca+'</td><td>'+Co+'</td><td>'+item.Armure+'</td><td>'+Ar+'</td><td>'+Vul+'</td><td>'+Cap+'</td><td>'+item.Note+'</td><td>Unofficiel</td></th>');
+	});
+  jd.Site.forEach(function(item){
+		var Ca = "";for (var [key, value] of Object.entries(item.Caract)) {Ca=Ca+`${key}: ${value}`+'<br>';}
+		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
+		var Ar = "";var Ar2 = [];item.Arme.forEach(function (item2){Ar2.push(Object.values(item2));});Ar2.forEach(function (item2){Ar=Ar+Object.values(item2)+'<br>';});
+		var Cap = "";item.Capacités.forEach(function(item2){Cap=Cap+item2+"<br>"});
+		var Vul = "";item.Vulnérabilités.forEach(function(item2){Vul=Vul+item2+"<br>"});
+    $('#tablo').append('<tr><th scope="row">'+item.Nom+'</th><td>'+item.Menace+'</td><td>'+item.Récompense+'</td><td>'+item.Armure+'</td><td>'+item.Taille+'</td><td>'+item.Poids+'</td><td>'+item.Environnement+'</td><td>'+item.Intelligence+'</td><td>'+item.Organisation+'</td><td>'+Ca+'</td><td>'+Co+'</td><td>'+item.Armure+'</td><td>'+Ar+'</td><td>'+Vul+'</td><td>'+Cap+'</td><td>'+item.Note+'</td><td>the-witcher-jdr.fr</td></th>');
+	});
 });
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
