@@ -82,6 +82,7 @@ $.getJSON('bestaire.json', function(jd) {
 		var Co = "";for (var [key, value] of Object.entries(item.Compt)) {Co=Co+`${key}: ${value}`+'<br>';}
 		var Ar = "";var Ar2 = "";
 	  	item.Arme.forEach(function (item2){
+			console.log(item2);
 			Ar2 = Ar2+"<tr><th scope="row">"+item2.Nom+"</th><td>"+item2.DMG+"</td><td>"+item2.Effet+"</td><td>"+item2.Att/tour+"</td></tr>";
 		});
 	  	Ar = '<table class="table table-striped"><thead><tr><th scope="col">Nom</th><th scope="col">DMG</th><th scope="col">Effet</th><th scope="col">Att/tour</th></tr></thead><tbody>'+Ar2+'</tbody></table>';
