@@ -1,0 +1,24 @@
+/* global cookie_pop_text */
+(function ( $ ) {
+  
+    'use strict';
+  
+    if ( 'set' !== $.cookie( 'cookie-pop' ) ) {
+  
+$('body').prepend(
+    '<div class="cookie-pop"><div class="content-cookie-pop"><p>En poursuivant la navigation sur le site www.chu-amiens.fr, vous acceptez l\'utilisation de cookies lorsque vous partagez du contenu via les boutons des réseaux sociaux (\"j\'aime\" de facebook, \"tweet\" de twitter, \"+\" de google +, linkedin...). Les cookies permettront également au CHU Amiens-Picardie de mesurer l\'audience de son site INTERNET. Pour en savoir plus sur les cookies, consultez <a href=\"http://www.cnil.fr/vos-droits/vos-traces/les-cookies/\" target=\"_blank\">le site de la CNIL</a></p><button id="accept-cookie">OK</button></div></div>'
+     
+    );
+  
+        $( '#accept-cookie' ).click(function () {
+  
+            $.cookie( 'cookie-pop', 'set' );
+            $( '.cookie-pop' ).remove();
+  
+        });
+  
+    }
+  
+}( jQuery ) );
+
+
