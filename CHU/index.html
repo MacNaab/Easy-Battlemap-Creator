@@ -30,7 +30,7 @@ function la_recherche3(){
 	la_recherche = la_recherche.replace(" ", "");
 	if(la_recherche == "Homéopathie" || la_recherche == "homéopathie" || la_recherche == "Homeopathie" || la_recherche == "homeopathie"){
 			$(".search-word").html(' "Homéopathie" 1 résultat');
-			$(".results").html('Buvez-moi.');
+			$(".results").html('<li class="zone contact-zone"><h3 class="arrow blue"><a style="cursor:pointer;">Communiqués de presse</a></h3><p>Buvez-moi.</p></li>');
 			return;
 	}else{
 			$(".search-word").html(' "'+la_recherche+'" 0 résultat');
