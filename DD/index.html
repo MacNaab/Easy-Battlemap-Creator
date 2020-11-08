@@ -10,48 +10,63 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 @media only screen and (max-width: 600px) {     /* Téléphone portable */
-  body{margin-top: 5%;margin-bottom: 5%;}
+  #Corps{margin-top: 5%;margin-bottom: 5%;}
 }
 
 @media only screen and (min-width: 600px) {     /* Tablettes */
-  body{margin-bottom: 5%; margin-top: 5%;margin-left: 10%;margin-right: 10%;}
+  #Corps{margin-bottom: 5%; margin-top: 5%;margin-left: 10%;margin-right: 10%;}
 }
-
+blockquote p::before {content: '\201C';}
+blockquote p::after {content: '\201D';}
 .grid-container2 {display: grid;grid-template-columns: auto auto;}
 </style>
 </head>
 <body>
-<div>
-	<blockquote class="blockquote">
-	  <p class="mb-0"><strong><u>DungeonDraft Asset Hacks v1.3</u></strong><br>Below, you will find the textual representation of custom assets (layered objects) made in Dungeondraft and then pasted here as text. To import them into your own Dungeondraft session. Please feel free to let me know if you have any questions about this document or want to add anything <a href="mailto:morvoldpress@yahoo.com">morvoldpress@yahoo.com</a>.</p>
-	  <footer class="blockquote-footer">Thank! <cite title="Source Title">Jeff @ Morvold Press</cite></footer>
-	</blockquote>
-</div>
-<div>
-	<h3><u>How to:</u></h3>
-	<ol>
-<li>Have Dungeondraft open.</li>
-<li>Find the Asset that you want on this page.</li>
-<li>Click "Copy all text" button</li>
-<li>Go into Dungeondraft and click the &ldquo;Select Tool&rdquo; (the arrow icon at the bottom of the tool menu on the left side)</li>
-<li>Paste</li>
-<li>It should be that easy &ndash; the asset should appear!</li>
-	</ol>
-</div>
-<div class="grid-container2">
+<div id="Corps">
 	<div>
-		<input id="d" type="text" class="form-control" list="wiki" placeholder="Name">
+		<blockquote class="blockquote" cite="https://docs.google.com/document/d/1NygHFf4oplsI4iQFqIjwib93uB3Ryt6X/">
+		  <p class="mb-0"><strong><u>DungeonDraft Asset Hacks v1.3</u></strong><br>Below, you will find the textual representation of custom assets (layered objects) made in Dungeondraft and then pasted here as text. To import them into your own Dungeondraft session. Please feel free to let me know if you have any questions about this document or want to add anything <a href="mailto:morvoldpress@yahoo.com">morvoldpress@yahoo.com</a>.</p>
+		  <footer class="blockquote-footer">Thank! <cite title="Source Title">Jeff @ Morvold Press</cite></footer>
+		</blockquote>
 	</div>
-	<div style="text-align:center;">
-		<button onclick="Copy()"type="button" class="btn btn-info">Copy all text</button>
+	<div>
+		<h3><u>How to:</u></h3>
+		<ol>
+	<li>Have Dungeondraft open.</li>
+	<li>Find the Asset that you want on this page.</li>
+	<li>Click "Copy all text" button</li>
+	<li>Go into Dungeondraft and click the &ldquo;Select Tool&rdquo; (the arrow icon at the bottom of the tool menu on the left side)</li>
+	<li>Paste</li>
+	<li>It should be that easy &ndash; the asset should appear!</li>
+		</ol>
+	</div>
+	<div class="grid-container2">
+		<div>
+			<input id="d" type="text" class="form-control" list="wiki" placeholder="Name">
+		</div>
+		<div style="text-align:center;">
+			<button onclick="Copy()"type="button" class="btn btn-info">Copy all text</button>
+		</div>
+	</div>
+	<div>
+		<small id="S" class="text-muted"></small>
+	</div>
+	<div style="margin-top:15px;">
+		<textarea class="form-control" id="myInput"></textarea>
 	</div>
 </div>
-<div>
-	<small id="S" class="text-muted"></small>
-</div>
-<div style="margin-top:15px;">
-	<textarea class="form-control" id="myInput"></textarea>
-</div>
+
+<footer class="footer">
+	<div class="pos-f-t">
+		<div class="bg-dark p-4">
+			<h5 class="text-white h4">v1.3</h5>
+			<span class="text-muted">
+				DungeonDraft Asset Hacks is an original creation of Jeff@Morvold Press. All rights reserved.
+				<br>Do not hesitate to follow him on <a href="https://www.reddit.com/user/SgtSnarf/">reddit</a> and <a href="https://www.patreon.com/morvoldpress">patreon</a>.
+			</span>
+		</div>
+	</div>
+</footer>
 <datalist id="wiki"></datalist>
 </body>
 <script>
