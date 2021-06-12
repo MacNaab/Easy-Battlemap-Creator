@@ -149,6 +149,23 @@ Maintenant, nous pouvons faire la même chose avec les barres de la balustrade. 
 
 Traduction du guide de [FakeFairytale](https://www.reddit.com/r/dungeondraft/comments/lmpqfz/tutorial_shading_part_2_staircase_railings_and/)
 
+
+![](https://preview.redd.it/4udakvdpetl61.png?width=1536&format=png&auto=webp&s=de8cce45e0c75d285294631e5c9426faa89527e3)
+![](https://preview.redd.it/pypdudkpetl61.png?width=1536&format=png&auto=webp&s=bb0f295e7adefff67843caa28f6367cab35ab659)
+![](https://preview.redd.it/dc845rppetl61.png?width=1536&format=png&auto=webp&s=7530b4382ce7c2e2d3d4df783da7c83f301516b6)
+![](https://preview.redd.it/1bu1wwtpetl61.png?width=1536&format=png&auto=webp&s=484e822a140d9f8e7865cc358266ad924f0b45d2)
+Guide par [WTFrhino](https://www.reddit.com/r/dungeondraft/comments/m0h3ph/a_visual_guide_to_secret_passages/)
+
+Perpectives
+![](https://i.redd.it/kmnp0ew8n7d51.jpg)
+Guide par [JU_ST](https://www.reddit.com/r/dungeondraft/comments/hy7sp8/a_short_tutorial_on_creating_perspective/)
+
+Escaliers
+Guide par [WTFrhino](https://www.reddit.com/r/dungeondraft/comments/m44o94/a_visual_guide_to_placing_stairs_with_curved_paths/)
+
+Entrée grotte
+Guide par [magicspook](https://www.reddit.com/r/dungeondraft/comments/iigu0k/nifty_way_to_make_cave_entrances/)
+
 ------------------
 
 # Crosshead Studio
